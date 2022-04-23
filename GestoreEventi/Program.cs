@@ -31,22 +31,39 @@ nuovoEventoInProgramma.PrenotaPosti(postiPrenotati);
 
 nuovoEventoInProgramma.ToString();
 
-
 nuovoEventoInProgramma.RichiestaPerDisdire();
 
 nuovoEventoInProgramma.ToString();
 
+Console.WriteLine("Vuoi aggiugnere un evento (si/no)?");
+string rispostaAggiungiEvento = Console.ReadLine() ;
+switch (rispostaAggiungiEvento)
+{
+    case "si":
+        Console.WriteLine("Bene, ti aiuterò io a inserire il tuo evento!");
+        
+        break;
+    case "no":
+        Console.WriteLine("Nel caso in cui cambiassi idea, sarò sempre disponibile.");
+        break;
+    default:
+        Console.WriteLine("Per favore scrivi solo si oppure no, grazie");
+        break;
+
+}
+
+
 
 
 //creo una lista//
-/*List<Evento> listaDegliEventi = new List<Evento>();
+List<Evento> listaDegliEventi = new List<Evento>();
 
-Console.WriteLine("Quanti eventi devi programmare?");
+/*Console.WriteLine("Quanti eventi devi programmare?");
 int numeroDiEventiInProgramma = int.Parse(Console.ReadLine());
 
 for (int i = 0; i < numeroDiEventiInProgramma; i++)
 {
-    Console.WriteLine("Ciao sono il tuo aiutante per programmare gli eventi, ho visto che hai inserito " + numeroDiEventiInProgramma + " eventi \n ");
+    Console.WriteLine("Ciao sono il tuo aiutante per programmare gli eventi, ho visto che hai inserito " + numeroDiEventiInProgramma + " eventi \n ");*/
     Console.WriteLine("Qual è il nome dell'evento ? \n");
     string nome = Console.ReadLine();
 
@@ -82,8 +99,4 @@ for (int i = 0; i < numeroDiEventiInProgramma; i++)
             Console.WriteLine(erroreNumeroPosti.Message);
         }
     }
-
-
-   
-}*/
 

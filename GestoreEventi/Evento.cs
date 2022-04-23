@@ -112,7 +112,7 @@ namespace GestoreEventi
 
         }
 
-        //Ho creato un metodo che chiede quanti posti disdire fino a che 
+        //Ho creato un metodo che chiede a ripetizione quanti posti disdire, il metodo si ferma nel momento in cui no
         public void RichiestaPerDisdire()
         {
             bool controlloRisposta = false;
@@ -144,7 +144,7 @@ namespace GestoreEventi
         }
     //metodo per stampare (override del metodo generale ToString())//
 
-    public virtual void ToString()
+         public virtual void ToString()
          {
             Console.WriteLine("---Eventi--- \n");
             Console.WriteLine("Data e titolo dell'evento \n");
@@ -153,6 +153,19 @@ namespace GestoreEventi
             Console.WriteLine("I numeri di posti prenotati è " + this.numeroPostiPrenotati);
             Console.WriteLine("I numeri di posti rimanenti è " + this.numeroPostiRimanenti);
 
-        }
+         }
+    
+        //metodo per prendre tutti i dati dell'evento 
+         public void AggiungiEvento()
+
+         {
+            Console.WriteLine("Ti aiuterò io ad aggiugnere il tuo evento \n");
+            Console.WriteLine("Qual è il titolo dell'evento?");
+            string Titolo = Console.ReadLine();
+            Console.WriteLine("Quanti posti saranno disponibili?");
+            int numeroPostiTotali = int.Parse(Console.ReadLine());
+            Console.WriteLine("Quando si terrà questo evento?");
+            DateTime dataEvento = DateTime.Parse(Console.ReadLine());
+         }
     }
 }
