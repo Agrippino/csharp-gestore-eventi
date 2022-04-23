@@ -1,14 +1,12 @@
 ﻿using GestoreEventi;
-//creo un costruttore//
+
+//creo un costruttore  che richiede informazioni//
 Console.WriteLine("Titolo: ");
 string Titolo = Console.ReadLine();
 Console.WriteLine("numero posti totali: ");
 int  numeroPostiTotali=int.Parse(Console.ReadLine());
 Console.WriteLine("data evento: ");
 DateTime dataEvento = DateTime.Parse(Console.ReadLine());
-
-
-
 
 Evento nuovoEventoInProgramma = new Evento(Titolo,numeroPostiTotali,dataEvento) ;
 
@@ -33,9 +31,8 @@ nuovoEventoInProgramma.PrenotaPosti(postiPrenotati);
 
 nuovoEventoInProgramma.ToString();
 
-Console.WriteLine("Vuole disdire dei posti per questo evento ? [Si/No] ");
-string richiestaPosti = Console.ReadLine();
-nuovoEventoInProgramma.RichiestaPerDisdire(richiestaPosti);
+
+nuovoEventoInProgramma.RichiestaPerDisdire();
 
 nuovoEventoInProgramma.ToString();
 

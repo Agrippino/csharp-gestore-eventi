@@ -19,6 +19,8 @@ namespace GestoreEventi
 
         private protected int postiDaRimuovere;
 
+        private protected int numeroPrenotazioniResidue;
+
         private protected DateTime dataEvento = new DateTime();
 
         private protected DateTime dataDiOggi =  DateTime.Now;
@@ -42,7 +44,7 @@ namespace GestoreEventi
             {
                 throw new Exception("Mi dispiace non puoi inserire un numero minore di 0 o inferiore a 1, per favore inserisci un numero divero");
             }
-
+        
         }
 
       
@@ -72,7 +74,7 @@ namespace GestoreEventi
             this.numeroPostiPrenotati = this.numeroPostiPrenotati + postiPrenotati;
             this.numeroPostiRimanenti = this.numeroPostiTotali - this.numeroPostiPrenotati;
 
-            if (dataEvento < dataDiOggi)
+            if (this.dataEvento < this.dataDiOggi)
             {
                 Console.WriteLine("Mi dispiace questo evento non è più disponibile");
             }
@@ -83,7 +85,7 @@ namespace GestoreEventi
             else
             {
                 Console.WriteLine("Grazie per la sua prenotazione");
-                Console.WriteLine("I posti rimanenti ora sono: " + numeroPostiRimanenti);
+                Console.WriteLine("I posti rimanenti ora sono: " + this.numeroPostiRimanenti);
             } 
         }
 
@@ -93,46 +95,49 @@ namespace GestoreEventi
             this.postiDaRimuovere = this.numeroPostiPrenotati - disdiciPosti;
             this.numeroPostiRimanenti = this.numeroPostiTotali - this.postiDaRimuovere;
 
-            if (numeroPostiPrenotati < disdiciPosti)
+            if (this.numeroPostiPrenotati < disdiciPosti)
             {
                 Console.WriteLine("Mi dispiace non ci sono più posti da rimuovere ");
             }
-            if (dataEvento < dataDiOggi)
+            if (this.dataEvento < this.dataDiOggi)
             {
                 Console.WriteLine("Mi dispiace questo evento non è più disponibile");
 
             }
             else
             {
-                Console.WriteLine("I posti disdetti sono: " + postiDaRimuovere + " , grazie e arrivederci.");
-                Console.WriteLine("I posti rimanenti sono: " + numeroPostiRimanenti);
+                Console.WriteLine("I posti disdetti sono: " + this.postiDaRimuovere );
+                Console.WriteLine("I posti rimanenti sono: " + this.numeroPostiRimanenti);
             }
 
         }
 
-        //metodo per chiedere più volte di disdire
-        public void RichiestaPerDisdire(string rispostaRichiesta)
+        //Ho creato un metodo che chiede quanti posti disdire fino a che 
+        public void RichiestaPerDisdire()
         {
-            bool controlloRichiesta = false;
-            while (controlloRichiesta == false)
-            {   string casoRisposta= Console.ReadLine();
-                switch (casoRisposta)
-                { 
-                    case "Si" :
+            bool controlloRisposta = false;
+            while (controlloRisposta == false)
+            { 
+                Console.WriteLine("Vuole disdire dei posti per questo evento (si/no) ?");
+                string rispostaPosti = Console.ReadLine();
+                switch (rispostaPosti)
+                {
+                    
+                    case "si" :
 
-                        Console.WriteLine("Quanti posti vuole disdire per questo eveto? Attualmente sono prenotati " + numeroPostiTotali + " posti.");
+                        Console.WriteLine("Quanti posti vuole disdire per questo eveto? Attualmente sono prenotati " + this.numeroPostiPrenotati + " posti.");
                         int disdiciPrenotazioni = int.Parse(Console.ReadLine());
                         DisdiciPosti(disdiciPrenotazioni);
-
-                        Console.WriteLine("Numero posti prenotati: " + numeroPostiPrenotati );
-                        Console.WriteLine("Numero posti disponibili: " +  numeroPostiRimanenti);
-                        break;
-                    case "No" :
+                        numeroPrenotazioniResidue = this.numeroPostiPrenotati - this.postiDaRimuovere;
+                        Console.WriteLine("Numero posti prenotati: " + this.numeroPrenotazioniResidue);
+                        Console.WriteLine("Numero posti disponibili: " + this.numeroPostiRimanenti);
+                        break; 
+                     case "no" :
                         Console.WriteLine("Grazie mille, arrivederci");
-                        controlloRichiesta = true;
+                        controlloRisposta = true;
                         break;
                     default:
-                    Console.WriteLine("Scrivi qualcosa per favore.Grazie.");
+                        Console.WriteLine("Per favore scrivi solo si o no, grazie.");
                         break;
                 }
             }
